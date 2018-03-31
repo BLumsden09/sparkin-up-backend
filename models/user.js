@@ -10,7 +10,7 @@ let emailValidityChecker = (email) => {
 }
 const emailValidators = [
     {
-        validator: emailValidityChecker, 
+        validator: emailValidityChecker,
         message: 'Must be a valid email'
     }
 ]
@@ -43,5 +43,5 @@ userSchema.pre('save', function(next) {
 userSchema.methods.comparePassword = function(password) {
     return bcrypt.compareSync(password, this.password)
 }
-
+userSchema.index({'$**': 'text'});
 module.exports = mongoose.model('User', userSchema)
